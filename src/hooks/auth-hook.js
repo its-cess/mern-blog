@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 let logoutTimer;
 
@@ -7,10 +7,15 @@ export const useAuth = () => {
   const [token, setToken] = useState(false);
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false);
+  const [username, setUsername] = useState(false);
 
-  const login = useCallback((uid, token, expirationDate) => {
+  const navigate = useNavigate();
+
+  const login = useCallback((uid, token, username, expirationDate) => {
     setToken(token);
     setUserId(uid);
+    setUsername(username);
+    console.log(username, "auth-hook");
 
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
@@ -21,7 +26,8 @@ export const useAuth = () => {
       JSON.stringify({
         userId: uid,
         token: token,
-        expiration: tokenExpirationDate.toISOString()
+        expiration: tokenExpirationDate.toISOString(),
+        username: username
       })
     );
   }, []);
@@ -30,8 +36,9 @@ export const useAuth = () => {
     setToken(null);
     setTokenExpirationDate(null);
     setUserId(null);
+    setUsername(null);
     localStorage.removeItem("userData");
-    redirect("/");
+    navigate("/");
   }, []);
 
   useEffect(() => {
@@ -59,5 +66,5 @@ export const useAuth = () => {
     }
   }, [login]);
 
-  return { token, login, logout, userId };
+  return { token, login, logout, userId, username };
 };

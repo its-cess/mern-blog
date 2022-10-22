@@ -1,11 +1,13 @@
 import { Fragment, useContext } from "react";
 
-//import { AuthContext } from "../../context/auth-context";
+import { AuthContext } from "../../context/auth-context";
 
 import Navbar from "../UIElements/Navbar";
 
 const Home = () => {
-  //const auth = useContext(AuthContext);
+  const auth = useContext(AuthContext);
+
+  console.log(auth);
   return (
     <Fragment>
       <Navbar />

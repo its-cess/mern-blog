@@ -4,12 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import { AuthContext } from "./context/auth-context";
 import { useAuth } from "./hooks/auth-hook";
 
-import LogIn from "./components/forms/LogIn";
-import SignUp from "./components/forms/SignUp";
+import Auth from "./components/pages/Auth";
 import Home from "./components/pages/Home";
 
 const App = () => {
-  const { token, login, logout, userId } = useAuth();
+  const { token, login, logout, userId, username } = useAuth();
 
   return (
     <Fragment>
@@ -18,13 +17,13 @@ const App = () => {
           isLoggedIn: !!token,
           token: token,
           userId: userId,
+          username: username,
           login: login,
           logout: logout
         }}
       >
         <Routes>
-          <Route path="/" element={<LogIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/" element={<Auth />} />
           <Route path="/home" element={<Home />} />
         </Routes>
       </AuthContext.Provider>

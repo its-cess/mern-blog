@@ -1,5 +1,5 @@
 import { Fragment, useState, useContext } from "react";
-import { Link, useNavigate, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
 
 const defaultFormFields = {
@@ -39,8 +39,12 @@ const LogIn = () => {
         })
       });
       const responseData = await response.json();
-      console.log(responseData);
-      auth.login(responseData.userId, responseData.token);
+
+      auth.login(
+        responseData.userId,
+        responseData.token,
+        responseData.username
+      );
       if (responseData.token) {
         navigate("home");
       }
@@ -70,8 +74,6 @@ const LogIn = () => {
 
         <button>Sign In</button>
       </form>
-      <Link to="/signup">Need an account? Create one!</Link>
-      <Outlet />
     </Fragment>
   );
 };

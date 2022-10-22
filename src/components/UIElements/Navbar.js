@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/auth-context";
 
 const Navbar = () => {
   const auth = useContext(AuthContext);
-  console.log(auth);
+
   return (
     <div>
       <h2>Header</h2>
