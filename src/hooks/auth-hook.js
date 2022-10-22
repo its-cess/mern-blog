@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { redirect } from "react-router-dom";
 
 let logoutTimer;
 
@@ -10,6 +11,7 @@ export const useAuth = () => {
   const login = useCallback((uid, token, expirationDate) => {
     setToken(token);
     setUserId(uid);
+
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
@@ -29,6 +31,7 @@ export const useAuth = () => {
     setTokenExpirationDate(null);
     setUserId(null);
     localStorage.removeItem("userData");
+    redirect("/");
   }, []);
 
   useEffect(() => {

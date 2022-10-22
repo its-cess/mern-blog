@@ -39,7 +39,7 @@ const LogIn = () => {
         })
       });
       const responseData = await response.json();
-
+      console.log(responseData);
       auth.login(responseData.userId, responseData.token);
       if (responseData.token) {
         navigate("home");
