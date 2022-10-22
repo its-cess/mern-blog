@@ -6,6 +6,7 @@ import { useAuth } from "./hooks/auth-hook";
 
 import LogIn from "./components/forms/LogIn";
 import SignUp from "./components/forms/SignUp";
+import Home from "./components/pages/Home";
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
@@ -24,6 +25,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </AuthContext.Provider>
     </Fragment>

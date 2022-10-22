@@ -43,6 +43,7 @@ const SignUp = () => {
         responseData.username,
         responseData.token
       );
+      alert("sign up page");
     } catch (err) {}
 
     resetFormFields();

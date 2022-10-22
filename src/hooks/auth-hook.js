@@ -8,7 +8,6 @@ export const useAuth = () => {
   const [userId, setUserId] = useState(false);
 
   const login = useCallback((uid, token, expirationDate) => {
-    console.log("running login function");
     setToken(token);
     setUserId(uid);
     const tokenExpirationDate =
@@ -23,7 +22,6 @@ export const useAuth = () => {
         expiration: tokenExpirationDate.toISOString()
       })
     );
-    alert("logged in");
   }, []);
 
   const logout = useCallback(() => {

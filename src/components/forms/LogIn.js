@@ -1,5 +1,5 @@
-import { useState, useContext, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Fragment, useState, useContext } from "react";
+import { Link, useNavigate, Outlet } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
 
 const defaultFormFields = {
@@ -9,6 +9,8 @@ const defaultFormFields = {
 
 const LogIn = () => {
   const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { username, password } = formFields;
 
@@ -26,7 +28,7 @@ const LogIn = () => {
     event.preventDefault();
 
     try {
-      const responseData = await fetch("http://localhost:4000/login", {
+      const response = await fetch("http://localhost:4000/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json"
@@ -36,11 +38,12 @@ const LogIn = () => {
           password: formFields.password
         })
       });
-      auth.login(
-        responseData.userId,
-        responseData.username,
-        responseData.token
-      );
+      const responseData = await response.json();
+
+      auth.login(responseData.userId, responseData.token);
+      if (responseData.token) {
+        navigate("home");
+      }
     } catch (err) {}
 
     resetFormFields();
@@ -68,6 +71,7 @@ const LogIn = () => {
         <button>Sign In</button>
       </form>
       <Link to="/signup">Need an account? Create one!</Link>
+      <Outlet />
     </Fragment>
   );
 };
