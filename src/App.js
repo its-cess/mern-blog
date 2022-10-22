@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from "react";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+import { AuthContext } from "./context/auth-context";
+import { useAuth } from "./hooks/auth-hook";
+
+import LogIn from "./components/forms/LogIn";
+import SignUp from "./components/forms/SignUp";
+
+const App = () => {
+  const { token, login, logout, userId } = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <AuthContext.Provider
+        value={{
+          isLoggedIn: !!token,
+          token: token,
+          userId: userId,
+          login: login,
+          logout: logout
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<LogIn />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </AuthContext.Provider>
+    </Fragment>
   );
-}
+};
 
 export default App;
