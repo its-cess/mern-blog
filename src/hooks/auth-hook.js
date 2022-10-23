@@ -7,18 +7,15 @@ export const useAuth = () => {
   const [token, setToken] = useState(false);
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false);
-  const [username, setUsername] = useState(false);
+ 
 
   const navigate = useNavigate();
 
-  const login = useCallback((uid, token, username, expirationDate) => {
+  const login = useCallback((uid, token,  expirationDate) => {
     setToken(token);
     setUserId(uid);
-    setUsername(username);
-    console.log(username, "auth-hook");
-
-    const tokenExpirationDate =
-      expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
+    
+    const tokenExpirationDate =  expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
 
     localStorage.setItem(
@@ -26,17 +23,16 @@ export const useAuth = () => {
       JSON.stringify({
         userId: uid,
         token: token,
-        expiration: tokenExpirationDate.toISOString(),
-        username: username
+        expiration: tokenExpirationDate.toISOString()
       })
     );
+    navigate("/home");
   }, []);
 
   const logout = useCallback(() => {
     setToken(null);
     setTokenExpirationDate(null);
     setUserId(null);
-    setUsername(null);
     localStorage.removeItem("userData");
     navigate("/");
   }, []);
@@ -66,5 +62,5 @@ export const useAuth = () => {
     }
   }, [login]);
 
-  return { token, login, logout, userId, username };
+  return { token, login, logout, userId };
 };
