@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import { AuthContext } from "../../context/auth-context";
 
 const defaultFormFields = {
   title: "",
@@ -6,6 +8,7 @@ const defaultFormFields = {
 }
 
 const CreateNew = () => {
+  const auth = useContext(AuthContext);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { title, body } = formFields;
 
@@ -19,9 +22,26 @@ const CreateNew = () => {
     setFormFields({ ...formFields, [name]:value });
   }
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
-    alert("form submitted!")
+    
+    try {
+      const response = await fetch("http://localhost:4000/posts/new", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + auth.token
+        },
+        body: JSON.stringify({
+          title: formFields.title,
+          body: formFields.body
+        })
+      })
+     await response.json();
+    } catch (err) {
+      console.log(err);
+    }
+
     resetFormFields();
   }
 

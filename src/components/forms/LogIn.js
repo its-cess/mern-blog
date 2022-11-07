@@ -31,7 +31,7 @@ const LogIn = () => {
       const response = await fetch("http://localhost:4000/login", {
         method: "POST",
         headers: {
-          "Content-type": "application/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           username: formFields.username,
@@ -47,7 +47,9 @@ const LogIn = () => {
       if (responseData.token) {
         navigate("home");
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
 
     resetFormFields();
   };
