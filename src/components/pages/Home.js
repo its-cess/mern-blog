@@ -2,7 +2,8 @@ import { Fragment, useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../context/auth-context";
 
-import Navbar from "../UIElements/Navbar";
+import Navbar from "../elements/Navbar";
+import EntriesList from "../elements/EntriesList";
 
 
 const Home = () => {
@@ -29,17 +30,15 @@ const Home = () => {
   fetchUserEntries();
  }, [auth.token, userId])
 
+ const deleteEntryHandler = (deletedEntryId) => {
+  setLoadedEntries((prevEntries) => prevEntries.filter((entry) => entry.id !== deletedEntryId))
+ }
+
   return (
     <Fragment>
       <Navbar />
       <h2>User Home Page</h2>
-      <div>
-        <ul>
-          {loadedEntries.map((place) => (
-            <li key={place.id}>{place.title}</li>
-          ))}
-        </ul>
-      </div>
+      <EntriesList entries={loadedEntries} onDeleteEntry={deleteEntryHandler}/>
     </Fragment>
   );
 };
