@@ -2,7 +2,6 @@ import { Fragment, useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../context/auth-context";
 
-import Navbar from "../elements/Navbar";
 import EntriesList from "../elements/EntriesList";
 
 
@@ -20,9 +19,7 @@ const Home = () => {
         }
       })
       const responseData = await response.json();
-      console.log(responseData.posts);
       setLoadedEntries(responseData.posts)
-      
     } catch (err) {
       console.log(err);
     }
@@ -36,7 +33,6 @@ const Home = () => {
 
   return (
     <Fragment>
-      <Navbar />
       <h2>User Home Page</h2>
       <EntriesList entries={loadedEntries} onDeleteEntry={deleteEntryHandler}/>
     </Fragment>

@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../context/auth-context";
 
@@ -10,7 +10,7 @@ const defaultFormFields = {
 
 const CreateNew = () => {
   const auth = useContext(AuthContext);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { title, body } = formFields;
@@ -43,7 +43,8 @@ const CreateNew = () => {
      await response.json();
 
      if (response.status === 201) {
-      navigate("../home");
+      //navigate("/");
+      alert("Post created!")
      }
 
     } catch (err) {

@@ -1,4 +1,5 @@
 import { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
 
 const EntryItem = (props) => {
@@ -27,7 +28,7 @@ const EntryItem = (props) => {
       <h2>{props.title}</h2>
       <h3>{props.body}</h3>
     </li>
-    <button>Edit</button>
+    <Link to={`/posts/${props.id}`}>Edit</Link>
     <button onClick={onDeleteHandler}>Delete</button>
     </Fragment>
   )
