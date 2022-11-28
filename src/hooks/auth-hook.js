@@ -8,15 +8,14 @@ export const useAuth = () => {
   const [userId, setUserId] = useState(false);
   const [username, setUsername] = useState(false);
  
-  const login = useCallback((uid, token,  expirationDate, username) => {
+  const login = useCallback((uid, token, username, expirationDate) => {
     setToken(token);
     setUserId(uid);
+    setUsername(username);
     
     const tokenExpirationDate =  expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
     
-    //username is still coming back undefined
-    setUsername(username);
 
     localStorage.setItem(
       "userData",

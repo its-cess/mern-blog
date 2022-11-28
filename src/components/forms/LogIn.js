@@ -42,10 +42,12 @@ const LogIn = () => {
 
       auth.login(
         responseData.userId,
-        responseData.token
+        responseData.token,
+        responseData.username
       );
       if (responseData.token) {
        navigate("/")
+       console.log(responseData);
       }
     } catch (err) {
       console.log(err);

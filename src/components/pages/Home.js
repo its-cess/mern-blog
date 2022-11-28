@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <Fragment>
       <h2>User Home Page</h2>
-      <EntriesList entries={loadedEntries} onDeleteEntry={deleteEntryHandler}/>
+      {loadedEntries && <EntriesList entries={loadedEntries} onDeleteEntry={deleteEntryHandler}/>}  
     </Fragment>
   );
 };
