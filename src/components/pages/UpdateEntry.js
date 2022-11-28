@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../context/auth-context";
 
@@ -10,7 +10,7 @@ const defaultEntry = {
 
 const UpdateEntry = () => {
   const auth = useContext(AuthContext);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [loadedEntry, setLoadedEntry] = useState(defaultEntry);
   const entryId = useParams().entryId;
@@ -53,8 +53,7 @@ const UpdateEntry = () => {
       await response.json();
 
       if (response.status === 200) {
-        //navigate("/");
-        alert("updated entry!")
+        navigate("/");
       }
     } catch(err) {}
   };

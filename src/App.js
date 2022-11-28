@@ -11,7 +11,7 @@ import CreateNew from "./components/pages/CreateNew";
 import UpdateEntry from "./components/pages/UpdateEntry";
 
 const App = () => {
-  const { token, login, logout, userId } = useAuth();
+  const { token, login, logout, userId, username } = useAuth();
 
   let routes;
 
@@ -40,8 +40,9 @@ const App = () => {
           isLoggedIn: !!token,
           token: token,
           userId: userId,
+          username: username,
           login: login,
-          logout: logout
+          logout: logout, 
         }}
       >
         <BrowserRouter>

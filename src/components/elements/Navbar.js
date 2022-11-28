@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
 
@@ -7,10 +7,10 @@ const Navbar = () => {
  
 
   return (
-    <div>
+    <Fragment>
       <button onClick={auth.logout}>Logout</button>
       <Link to="new">Create New Post</Link>
-    </div>
+    </Fragment>
   );
 };
 
