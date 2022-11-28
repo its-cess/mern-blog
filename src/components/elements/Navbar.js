@@ -4,12 +4,12 @@ import { AuthContext } from "../../context/auth-context";
 
 const Navbar = () => {
   const auth = useContext(AuthContext);
+  const username = auth.username;
  
-
   return (
     <Fragment>
-      <button onClick={auth.logout}>Logout</button>
-      <Link to="new">Create New Post</Link>
+      <Link onClick={auth.logout} to="/">Logout</Link>
+      <Link to={`home/${username}/new`}>Create New Post</Link>
     </Fragment>
   );
 };

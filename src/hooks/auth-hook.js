@@ -33,6 +33,7 @@ export const useAuth = () => {
     setToken(null);
     setTokenExpirationDate(null);
     setUserId(null);
+    setUsername(null);
     localStorage.removeItem("userData");
   }, []);
 
@@ -51,11 +52,13 @@ export const useAuth = () => {
     if (
       storedData &&
       storedData.token &&
+      storedData.username &&
       new Date(storedData.expiration) > new Date()
     ) {
       login(
         storedData.userId,
         storedData.token,
+        storedData.username,
         new Date(storedData.expiration)
       );
     }

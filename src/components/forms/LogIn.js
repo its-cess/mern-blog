@@ -1,5 +1,6 @@
 import { Fragment, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { AuthContext } from "../../context/auth-context";
 
 const defaultFormFields = {
@@ -46,8 +47,7 @@ const LogIn = () => {
         responseData.username
       );
       if (responseData.token) {
-       navigate("/")
-       console.log(responseData);
+       navigate(`/home/${username}`)
       }
     } catch (err) {
       console.log(err);

@@ -14,14 +14,14 @@ const App = () => {
   const { token, login, logout, userId, username } = useAuth();
 
   let routes;
-
+  
   if (token) {
     routes = (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
-            <Route path="new" element={<CreateNew />} />
-            <Route path="posts/:entryId" element={<UpdateEntry />} />
+            <Route index path={`/home/:username`} element={<Home />} />
+            <Route path={`/home/:username/new`} element={<CreateNew />} />
+            <Route path={`/home/:username/edit/:entryId`} element={<UpdateEntry />} />
         </Route>
       </Routes>
     )

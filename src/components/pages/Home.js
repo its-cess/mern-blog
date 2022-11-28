@@ -10,8 +10,10 @@ const Home = () => {
   const [loadedEntries, setLoadedEntries] = useState([]);
 
   const userId = auth.userId;
+  
  useEffect(() => {
    const fetchUserEntries = async () => {
+    
     try {
       const response = await fetch(`http://localhost:4000/posts/user/${userId}`, {
         headers: {

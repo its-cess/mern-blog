@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/auth-context";
 
 const EntryItem = (props) => {
   const auth = useContext(AuthContext);
+  const username = auth.username;
 
   const onDeleteHandler = async () => {
     const postId = props.id;
@@ -28,7 +29,7 @@ const EntryItem = (props) => {
       <h2>{props.title}</h2>
       <h3>{props.body}</h3>
     </li>
-    <Link to={`/posts/${props.id}`}>Edit</Link>
+    <Link to={`/home/${username}/edit/${props.id}`}>Edit</Link>
     <button onClick={onDeleteHandler}>Delete</button>
     </Fragment>
   )

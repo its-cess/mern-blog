@@ -10,6 +10,7 @@ const defaultEntry = {
 
 const UpdateEntry = () => {
   const auth = useContext(AuthContext);
+  const username = auth.username;
   const navigate = useNavigate();
 
   const [loadedEntry, setLoadedEntry] = useState(defaultEntry);
@@ -53,7 +54,8 @@ const UpdateEntry = () => {
       await response.json();
 
       if (response.status === 200) {
-        navigate("/");
+        alert("Entry updated!")
+        navigate(`/home/${username}`);
       }
     } catch(err) {}
   };
