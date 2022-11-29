@@ -9,6 +9,7 @@ import SharedLayout from "./components/elements/SharedLayout";
 import Home from "./components/pages/Home";
 import CreateNew from "./components/pages/CreateNew";
 import UpdateEntry from "./components/pages/UpdateEntry";
+import EditProfile from "./components/pages/EditProfile";
 
 const App = () => {
   const { token, login, logout, userId, username } = useAuth();
@@ -22,6 +23,7 @@ const App = () => {
             <Route index path={`/home/:username`} element={<Home />} />
             <Route path={`/home/:username/new`} element={<CreateNew />} />
             <Route path={`/home/:username/edit/:entryId`} element={<UpdateEntry />} />
+            <Route path={`/home/:username/profile`} element={<EditProfile />}/>
         </Route>
       </Routes>
     )

@@ -2,6 +2,7 @@ import { Fragment, useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../context/auth-context";
 
+import Profile from "../elements/Profile";
 import EntriesList from "../elements/EntriesList";
 
 
@@ -35,7 +36,7 @@ const Home = () => {
 
   return (
     <Fragment>
-      <h2>User Home Page</h2>
+      <Profile />
       {loadedEntries && <EntriesList entries={loadedEntries} onDeleteEntry={deleteEntryHandler}/>}  
     </Fragment>
   );

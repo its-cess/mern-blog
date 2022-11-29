@@ -9,8 +9,9 @@ const Navbar = () => {
   return (
     <Fragment>
       <Link to={`home/${username}`}>Home</Link>
-      <Link onClick={auth.logout} to="/">Logout</Link>
+      <Link to={`home/${username}/profile`}>Profile</Link>
       <Link to={`home/${username}/new`}>Create New Post</Link>
+      <Link onClick={auth.logout} to="/">Logout</Link>
     </Fragment>
   );
 };
