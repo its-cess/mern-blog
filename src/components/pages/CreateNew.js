@@ -44,7 +44,7 @@ const CreateNew = () => {
      await response.json();
 
      if (response.status === 201) {
-      navigate(`../home/${username}`);
+      navigate(`../${username}`);
      }
 
     } catch (err) {

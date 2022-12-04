@@ -47,7 +47,7 @@ const LogIn = () => {
         responseData.username
       );
       if (responseData.token) {
-       navigate(`/home/${username}`)
+       navigate(`/${username}`)
       }
     } catch (err) {
       console.log(err);

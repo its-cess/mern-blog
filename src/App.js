@@ -20,10 +20,10 @@ const App = () => {
     routes = (
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-            <Route index path={`/home/:username`} element={<Home />} />
-            <Route path={`/home/:username/new`} element={<CreateNew />} />
-            <Route path={`/home/:username/edit/:entryId`} element={<UpdateEntry />} />
-            <Route path={`/home/:username/profile`} element={<EditProfile />}/>
+            <Route index path={`/:username`} element={<Home />} />
+            <Route path={`/:username/new`} element={<CreateNew />} />
+            <Route path={`/:username/edit/:entryId`} element={<UpdateEntry />} />
+            <Route path={`/:username/profile`} element={<EditProfile />}/>
         </Route>
       </Routes>
     )

@@ -55,7 +55,7 @@ const UpdateEntry = () => {
 
       if (response.status === 200) {
         alert("Entry updated!")
-        navigate(`/home/${username}`);
+        navigate(`/${username}`);
       }
     } catch(err) {}
   };

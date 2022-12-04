@@ -29,7 +29,7 @@ const EntryItem = (props) => {
       <h2>{props.title}</h2>
       <h3>{props.body}</h3>
     </li>
-    <Link to={`/home/${username}/edit/${props.id}`}>Edit</Link>
+    <Link to={`${username}/edit/${props.id}`}>Edit</Link>
     <button onClick={onDeleteHandler}>Delete</button>
     </Fragment>
   )

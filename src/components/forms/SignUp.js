@@ -44,7 +44,7 @@ const SignUp = () => {
 
       auth.login(responseData.userId, responseData.token);
       if (responseData.token) {
-        navigate("/");
+        navigate(`/${username}`);
       }
     } catch (err) {}
 
