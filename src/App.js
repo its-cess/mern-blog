@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContext } from "./context/auth-context";
 import { useAuth } from "./hooks/auth-hook";
 
+import { UserProvider } from "./context/user-context";
+
 import Auth from "./components/pages/Auth";
 import SharedLayout from "./components/elements/SharedLayout";
 import Home from "./components/pages/Home";
@@ -47,9 +49,11 @@ const App = () => {
           logout: logout, 
         }}
       >
+      <UserProvider>
         <BrowserRouter>
           {routes}
         </BrowserRouter>
+      </UserProvider>
       </AuthContext.Provider>
     </Fragment>
   );
