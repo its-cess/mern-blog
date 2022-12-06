@@ -9,7 +9,7 @@ import EntriesList from "../elements/EntriesList";
 
 const Home = () => {
   const auth = useContext(AuthContext);
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
   const [loadedEntries, setLoadedEntries] = useState([]);
   
   const userId = auth.userId;
