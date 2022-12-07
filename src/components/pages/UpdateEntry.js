@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../context/auth-context";
+import { UserContext } from "../../context/user-context";
 
 const defaultEntry = {
   title: "",
@@ -10,7 +11,7 @@ const defaultEntry = {
 
 const UpdateEntry = () => {
   const auth = useContext(AuthContext);
-  const username = auth.username;
+  const { currentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const [loadedEntry, setLoadedEntry] = useState(defaultEntry);
@@ -55,7 +56,7 @@ const UpdateEntry = () => {
 
       if (response.status === 200) {
         alert("Entry updated!")
-        navigate(`/${username}`);
+        navigate(`/${currentUser.username}`);
       }
     } catch(err) {}
   };

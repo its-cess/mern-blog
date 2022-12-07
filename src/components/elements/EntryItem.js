@@ -1,10 +1,13 @@
 import { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
+
 import { AuthContext } from "../../context/auth-context";
+import { UserContext } from "../../context/user-context";
 
 const EntryItem = (props) => {
   const auth = useContext(AuthContext);
-  const username = auth.username;
+  const { currentUser } = useContext(UserContext);
+
 
   const onDeleteHandler = async () => {
     const postId = props.id;
@@ -29,7 +32,7 @@ const EntryItem = (props) => {
       <h2>{props.title}</h2>
       <h3>{props.body}</h3>
     </li>
-    <Link to={`${username}/edit/${props.id}`}>Edit</Link>
+    <Link to={`${currentUser.username}/edit/${props.id}`}>Edit</Link>
     <button onClick={onDeleteHandler}>Delete</button>
     </Fragment>
   )

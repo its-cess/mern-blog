@@ -20,7 +20,6 @@ const Home = () => {
     if(localState !== null) {
       let data = JSON.parse(localStorage.getItem("userProfile"));
       setCurrentUser(data.userProfile);
-      console.log(currentUser, "Initial useEffect local storage");
     } else {
       fetchCurrentUser();
       setCurrentUser(currentUser)

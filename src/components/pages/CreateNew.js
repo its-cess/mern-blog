@@ -12,7 +12,6 @@ const defaultFormFields = {
 const CreateNew = () => {
   const auth = useContext(AuthContext);
   const { currentUser } = useContext(UserContext);
-  const username = currentUser.username;
   const navigate = useNavigate();
  
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -46,7 +45,7 @@ const CreateNew = () => {
      await response.json();
 
      if (response.status === 201) {
-      navigate(`../${username}`);
+      navigate(`../${currentUser.username}`);
      }
 
     } catch (err) {
