@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../context/auth-context";
+import { UserContext } from "../../context/user-context";
 
 const defaultFormFields = {
   title: "",
@@ -10,7 +11,8 @@ const defaultFormFields = {
 
 const CreateNew = () => {
   const auth = useContext(AuthContext);
-  const username = auth.username;
+  const { currentUser } = useContext(UserContext);
+  const username = currentUser.username;
   const navigate = useNavigate();
  
   const [formFields, setFormFields] = useState(defaultFormFields);
