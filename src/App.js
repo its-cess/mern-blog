@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContext } from "./context/auth-context";
 import { useAuth } from "./hooks/auth-hook";
 
-import { UserProvider } from "./context/user-context";
+import { UserContext } from "./context/user-context";
+import { useProfile } from "./hooks/user-hook"; 
 
 import Auth from "./components/pages/Auth";
 import SharedLayout from "./components/elements/SharedLayout";
@@ -13,9 +14,11 @@ import CreateNew from "./components/pages/CreateNew";
 import UpdateEntry from "./components/pages/UpdateEntry";
 import EditProfile from "./components/pages/EditProfile";
 
+
 const App = () => {
   const { token, login, logout, userId } = useAuth();
-
+  const { username, bio, birthday, fetchUserProfile } = useProfile();
+  
   let routes;
   
   if (token) {
@@ -48,11 +51,16 @@ const App = () => {
           logout: logout, 
         }}
       >
-      <UserProvider>
+     <UserContext.Provider value={{
+      fetchUserProfile: fetchUserProfile,
+      username: username,
+      bio: bio,
+      birthday: birthday
+     }}>
         <BrowserRouter>
           {routes}
         </BrowserRouter>
-      </UserProvider>
+     </UserContext.Provider>
       </AuthContext.Provider>
     </Fragment>
   );
