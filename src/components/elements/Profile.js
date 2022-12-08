@@ -14,7 +14,10 @@ const Profile = () => {
       <h1>Profile Section</h1>
       <h2>Username: {!user ? "" : username}</h2>
       <h4>About Me: {!user ? "" : user.bio}</h4>
-      <h4>Birthday: {!user.birthday ? "" : user.birthday.month} {!user.birthday ? "" : user.birthday.day}</h4>
+      <h4>Birthday: {!user.birthday ? ("") : (
+      <Fragment>
+        {user.birthday.month} {user.birthday.day}
+      </Fragment>)}</h4>
       {/* also check if the loggedin person is the profiles owner -MERN project*/}
       {auth.isLoggedIn && <Link to={`/${username}/profile`}>Edit Profile</Link>}
     </Fragment>

@@ -1,4 +1,5 @@
 import { Fragment, useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../context/auth-context";
 import { UserContext } from "../../context/user-context";
@@ -10,13 +11,14 @@ import EntriesList from "../elements/EntriesList";
 const Home = () => {
   const auth = useContext(AuthContext);
   const user = useContext(UserContext);
-  const [loadedEntries, setLoadedEntries] = useState([]);
-
+  const username = user.username;
   const userId = auth.userId;
+
+  const [loadedEntries, setLoadedEntries] = useState([]);
 
   useEffect(() => {
     user.fetchUserProfile(userId);
-  }, [user, userId]);
+  }, []);
 
  useEffect(() => {
    const fetchUserEntries = async () => {   
@@ -41,7 +43,9 @@ const Home = () => {
   return (
     <Fragment>
       <Profile />
-      {loadedEntries.length === 0 ? (<div>create first post</div>) : (<EntriesList entries={loadedEntries} onDeleteEntry={deleteEntryHandler}/>)}
+      {loadedEntries.length === 0 ? 
+      (<Link to={`${username}/new`}>Create your first post!</Link>) : 
+      (<EntriesList entries={loadedEntries} onDeleteEntry={deleteEntryHandler}/>)}
     </Fragment>
   );
 };
