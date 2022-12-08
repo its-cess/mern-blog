@@ -6,8 +6,8 @@ import { UserContext } from "../../context/user-context";
 
 const EntryItem = (props) => {
   const auth = useContext(AuthContext);
-  const { currentUser } = useContext(UserContext);
-
+  const user = useContext(UserContext);
+  const username = user.username;
 
   const onDeleteHandler = async () => {
     const postId = props.id;
@@ -32,7 +32,7 @@ const EntryItem = (props) => {
       <h2>{props.title}</h2>
       <h3>{props.body}</h3>
     </li>
-    <Link to={`${currentUser.username}/edit/${props.id}`}>Edit</Link>
+    <Link to={`${username}/edit/${props.id}`}>Edit</Link>
     <button onClick={onDeleteHandler}>Delete</button>
     </Fragment>
   )

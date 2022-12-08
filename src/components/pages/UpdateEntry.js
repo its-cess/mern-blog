@@ -11,7 +11,8 @@ const defaultEntry = {
 
 const UpdateEntry = () => {
   const auth = useContext(AuthContext);
-  const { currentUser } = useContext(UserContext);
+  const user = useContext(UserContext);
+  const username = user.username;
   const navigate = useNavigate();
 
   const [loadedEntry, setLoadedEntry] = useState(defaultEntry);
@@ -56,7 +57,7 @@ const UpdateEntry = () => {
 
       if (response.status === 200) {
         alert("Entry updated!")
-        navigate(`/${currentUser.username}`);
+        navigate(`/${username}`);
       }
     } catch(err) {}
   };

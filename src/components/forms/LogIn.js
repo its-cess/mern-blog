@@ -45,6 +45,7 @@ const LogIn = () => {
         responseData.userId,
         responseData.token
       );
+
       if (responseData.token) {
        navigate(`/${username}`)
       }

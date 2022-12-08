@@ -10,21 +10,13 @@ import EntriesList from "../elements/EntriesList";
 const Home = () => {
   const auth = useContext(AuthContext);
   const user = useContext(UserContext);
-  const { currentUser, setCurrentUser } = user;
   const [loadedEntries, setLoadedEntries] = useState([]);
-  const localState = localStorage.getItem("userProfile");
-  
+
   const userId = auth.userId;
 
-  useEffect(()=> {
-    if(localState !== null) {
-      let data = JSON.parse(localStorage.getItem("userProfile"));
-      setCurrentUser(data.userProfile);
-    } else {
-      fetchCurrentUser();
-      setCurrentUser(currentUser)
-    }
-  }, [])
+  useEffect(() => {
+    user.fetchUserProfile(userId);
+  }, [user, userId]);
 
  useEffect(() => {
    const fetchUserEntries = async () => {   
@@ -41,22 +33,6 @@ const Home = () => {
   };
   fetchUserEntries();
  }, [auth.token, userId])
-
- const fetchCurrentUser = async () => {
-  try {
-    const response = await fetch(`http://localhost:4000/${userId}`, {
-      headers: {
-        "Authorization": "Bearer " + auth.token
-      }
-    })
-    const responseData = await response.json();
-    localStorage.setItem("userProfile", JSON.stringify({ userProfile: responseData.user }));
-    setCurrentUser(responseData.user);
-    console.log("Initial API setCurrentUser");
-  } catch (err) {
-    console.log(err);
-  }
-}
 
  const deleteEntryHandler = (deletedEntryId) => {
   setLoadedEntries((prevEntries) => prevEntries.filter((entry) => entry.id !== deletedEntryId))
