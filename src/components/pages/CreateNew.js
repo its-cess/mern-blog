@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
 import { UserContext } from "../../context/user-context";
 
+import "./createNew.css";
+
 const defaultFormFields = {
   title: "",
   body: ""
@@ -55,24 +57,58 @@ const CreateNew = () => {
   };
 
   return (
-    <div>
-      <h1>Create New Post</h1>
+    <div className="post-container">
+      <div className="window">
+        <div className="title-bar">
+          <div className="title-bar-text">Create New Post</div>
+        </div>
+        <div className="window-body">
+          <form onSubmit={onSubmitHandler}>
+            <div className="field-row-stacked">
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                name="title"
+                value={title}
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="field-row-stacked">
+              <label htmlFor="body">Body</label>
+              <textarea
+                name="body"
+                value={body}
+                onChange={onChangeHandler}
+                rows="25"
+              />
+            </div>
+            <button>Post!</button>
+          </form>
+        </div>
+      </div>
+
+      {/* <h1>Create New Post</h1>
       <form onSubmit={onSubmitHandler}>
-        <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={onChangeHandler}
-          placeholder="title"
-        />
-        <textarea
-          placeholder="body"
-          name="body"
-          value={body}
-          onChange={onChangeHandler}
-        />
+        <div className="field-row-stacked">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            value={title}
+            onChange={onChangeHandler}
+          />
+        </div>
+        <div className="field-row-stacked">
+          <label htmlFor="body">Body</label>
+          <textarea
+            name="body"
+            value={body}
+            onChange={onChangeHandler}
+            rows="12"
+          />
+        </div>
         <button>Post!</button>
-      </form>
+      </form> */}
     </div>
   );
 };

@@ -1,0 +1,13 @@
+.window-body {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 15px;
+}
+
+input {
+  width: 300px;
+}
+
+.btn-container {
+  margin-top: 14px;
+}

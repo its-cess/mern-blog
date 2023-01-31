@@ -1,0 +1,25 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: fit-content;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 1rem;
+}
+
+textarea {
+  width: 500px;
+  margin-bottom: 14px;
+}
+
+/* shrink textarea on screens 600px and smaller */
+@media only screen and (max-width: 600px) {
+  textarea {
+    width: 400px;
+  }
+}

@@ -41,13 +41,10 @@ const LogIn = () => {
       });
       const responseData = await response.json();
 
-      auth.login(
-        responseData.userId,
-        responseData.token
-      );
+      auth.login(responseData.userId, responseData.token);
 
       if (responseData.token) {
-       navigate(`/${username}`)
+        navigate(`/${username}`);
       }
     } catch (err) {
       console.log(err);
@@ -58,25 +55,44 @@ const LogIn = () => {
 
   return (
     <Fragment>
-      <form onSubmit={onSubmitHandler}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={onChangeHandler}
-        />
+      <div className="window">
+        <div className="title-bar">
+          <div className="title-bar-text">Log In</div>
+          <div className="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div className="window-body">
+          <form onSubmit={onSubmitHandler}>
+            <div className="field-row-stacked">
+              <label htmlFor="username">Username</label>
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={onChangeHandler}
-        />
+              <input
+                type="text"
+                name="username"
+                value={username}
+                onChange={onChangeHandler}
+              />
+            </div>
 
-        <button>Sign In</button>
-      </form>
+            <div className="field-row-stacked">
+              <label htmlFor="password">Password</label>
+
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="btn-container">
+              <button>Sign In</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </Fragment>
   );
 };

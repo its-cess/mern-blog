@@ -2,6 +2,8 @@ import { Fragment, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
 
+import "./forms.css";
+
 const defaultFormFields = {
   username: "",
   email: "",
@@ -53,33 +55,53 @@ const SignUp = () => {
 
   return (
     <Fragment>
-      <form onSubmit={onSubmitHandler}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={onChangeHandler}
-        />
+      <div className="window">
+        <div className="title-bar">
+          <div className="title-bar-text">Sign Up</div>
+          <div className="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={onChangeHandler}
-        />
+        <div className="window-body">
+          <form onSubmit={onSubmitHandler}>
+            <div className="field-row-stacked">
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                name="username"
+                value={username}
+                onChange={onChangeHandler}
+              />
+            </div>
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={onChangeHandler}
-        />
+            <div className="field-row-stacked">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={onChangeHandler}
+              />
+            </div>
 
-        <button>Create Account</button>
-      </form>
+            <div className="field-row-stacked">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="btn-container">
+              <button>Create Account</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </Fragment>
   );
 };
